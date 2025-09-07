@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
-import { getBookmarks, saveBookmark, deleteBookmark, updateNote } from "../services/backendAPI";
+import { getBookmarks, addBookmark, deleteBookmark, updateNote } from "../services/backendAPI";
 
 export default function useBookmarks() {
   const [bookmarks, setBookmarks] = useState([]);
@@ -20,7 +20,7 @@ export default function useBookmarks() {
   const isBookmarked = (repoId) => bookmarks.some(b => b.repoId === repoId);
 
   const add = async (repo) => {
-    const saved = await saveBookmark(repo);
+    const saved = await addBookmark(repo);   // ✅ fixed here
     setBookmarks(prev => [saved, ...prev.filter(b => b.repoId !== saved.repoId)]);
   };
 
