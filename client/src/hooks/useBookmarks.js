@@ -20,7 +20,7 @@ export default function useBookmarks() {
   const isBookmarked = (repoId) => bookmarks.some(b => b.repoId === repoId);
 
   const add = async (repo) => {
-    const saved = await addBookmark(repo);   // ✅ fixed here
+    const saved = await addBookmark(repo);  // ✅ fixed here
     setBookmarks(prev => [saved, ...prev.filter(b => b.repoId !== saved.repoId)]);
   };
 
